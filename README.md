@@ -1,4 +1,6 @@
-# covid-vue
+# COVIDvue
+
+[![Build Status](https://travis-ci.com/aabanaag/covid-vue.svg?branch=develop)](https://travis-ci.com/aabanaag/covid-vue)
 
 ## Project setup
 ```
