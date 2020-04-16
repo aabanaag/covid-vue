@@ -7,11 +7,13 @@
       <OverviewCard title="Recovered" :value="totalRecoveries" />
       <OverviewCard title="Deaths" :value="totalDeaths" />
     </div>
+    <CountriesList :countries="countries" />
   </div>
 </template>
 
 <script>
 import OverviewCard from '@/components/OverviewCard.vue'
+import CountriesList from '@/components/CountriesList.vue'
 import CovidService from '../services/covid.services'
 import numeral from 'numeral'
 
@@ -21,23 +23,27 @@ export default {
       totalCases: '0',
       newCases: '0',
       totalRecoveries: '0',
-      totalDeaths: '0'
+      totalDeaths: '0',
+      countries: []
     }
   },
   components: {
-    OverviewCard
+    OverviewCard,
+    CountriesList
   },
   async created() {
-    const { data } = await CovidService.fetchWorldWide()
+    const worldWideData = await CovidService.fetchWorldWide()
+    const countriesListData = await CovidService.fetchCountries()
 
     function formatNumber(value) {
       return numeral(value).format('0,0')
     }
 
-    this.totalCases = formatNumber(data.cases)
-    this.newCases = formatNumber(data.todayCases)
-    this.totalRecoveries = formatNumber(data.recovered)
-    this.totalDeaths = formatNumber(data.deaths)
+    this.totalCases = formatNumber(worldWideData.data.cases)
+    this.newCases = formatNumber(worldWideData.data.todayCases)
+    this.totalRecoveries = formatNumber(worldWideData.data.recovered)
+    this.totalDeaths = formatNumber(worldWideData.data.deaths)
+    this.countries = countriesListData.data
   }
 }
 </script>
