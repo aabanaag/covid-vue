@@ -1,8 +1,14 @@
 <template>
-  <div>
-    <span>{{ title }}</span>
-    <h2>{{ value }}</h2>
-  </div>
+  <v-col cols="12" md="3">
+    <v-card>
+      <v-card-text>{{ title }}</v-card-text>
+      <v-card-title>
+        <h4 class="display-1 text--primary">
+          {{ value }}
+        </h4>
+      </v-card-title>
+    </v-card>
+  </v-col>
 </template>
 
 <script>
@@ -19,27 +25,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-div {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 10px;
-  padding: 10px;
-  margin-right: 10px;
-}
-div:last-child {
-  margin-left: 10px;
-  margin-right: 0px;
-}
-span {
-  color: grey;
-  justify-content: flex-start;
-}
-h2 {
-  font-weight: bold;
-  justify-content: flex-end;
-}
-</style>

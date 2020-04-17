@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const client = axios.create({
-  baseURL: 'https://corona.lmao.ninja',
+  baseURL: 'https://corona.lmao.ninja/v2',
   withCredentials: false
 })
 
@@ -9,10 +9,10 @@ const CovidService = {
   fetchWorldWide: async function() {
     return client.get('/all')
   },
-  fetchCountries: async function() {
+  fetchCountries: async function(sortCriteria) {
     return client.get('/countries', {
       params: {
-        sort: 'country'
+        sort: sortCriteria
       }
     })
   },
