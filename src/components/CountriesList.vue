@@ -1,7 +1,10 @@
 <template>
-  <div>
-    <v-data-table :headers="headers" :items="countries"></v-data-table>
-  </div>
+  <v-data-table
+    :headers="headers"
+    :items="countries"
+    hide-default-footer
+    class="elevation-1"
+  ></v-data-table>
 </template>
 
 <script>
@@ -31,5 +34,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped></style>

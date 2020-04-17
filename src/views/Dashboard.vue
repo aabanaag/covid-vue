@@ -1,13 +1,15 @@
 <template>
   <div>
-    <h1>COVID-19 Cases</h1>
-    <div class="container">
-      <OverviewCard title="Total" :value="totalCases" />
-      <OverviewCard title="New" :value="newCases" />
-      <OverviewCard title="Recovered" :value="totalRecoveries" />
-      <OverviewCard title="Deaths" :value="totalDeaths" />
-    </div>
-    <CountriesList :countries="countries" />
+    <h1>Overview</h1>
+    <v-container>
+      <v-row>
+        <OverviewCard title="Total" :value="totalCases" />
+        <OverviewCard title="New" :value="newCases" />
+        <OverviewCard title="Recovered" :value="totalRecoveries" />
+        <OverviewCard title="Deaths" :value="totalDeaths" />
+      </v-row>
+    </v-container>
+    <CountriesList :countries="topTenCountries" />
   </div>
 </template>
 
@@ -32,25 +34,23 @@ export default {
     CountriesList
   },
   async created() {
-    const worldWideData = await CovidService.fetchWorldWide()
-    const countriesListData = await CovidService.fetchCountries()
+    const worldWide = await CovidService.fetchWorldWide()
+    const topCasesWorldWide = await CovidService.fetchCountries('cases')
 
     function formatNumber(value) {
       return numeral(value).format('0,0')
     }
 
-    this.totalCases = formatNumber(worldWideData.data.cases)
-    this.newCases = formatNumber(worldWideData.data.todayCases)
-    this.totalRecoveries = formatNumber(worldWideData.data.recovered)
-    this.totalDeaths = formatNumber(worldWideData.data.deaths)
-    this.countries = countriesListData.data
+    this.totalCases = formatNumber(worldWide.data.cases)
+    this.newCases = formatNumber(worldWide.data.todayCases)
+    this.totalRecoveries = formatNumber(worldWide.data.recovered)
+    this.totalDeaths = formatNumber(worldWide.data.deaths)
+    this.countries = topCasesWorldWide.data
+  },
+  computed: {
+    topTenCountries: function() {
+      return this.countries.slice(0, 10)
+    }
   }
 }
 </script>
-
-<style lang="scss" scoped>
-.container {
-  display: flex;
-  flex-direction: row;
-}
-</style>
