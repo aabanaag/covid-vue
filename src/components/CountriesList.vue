@@ -3,6 +3,7 @@
     :headers="headers"
     :items="countries"
     hide-default-footer
+    disable-pagination
     class="elevation-1"
   ></v-data-table>
 </template>
