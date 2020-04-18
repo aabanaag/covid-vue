@@ -1,16 +1,11 @@
 <template>
-  <v-card>
-    <v-card-title>
-      Top 10 Countries (Infection)
-      <v-spacer></v-spacer>
-    </v-card-title>
-    <v-data-table
-      :headers="headers"
-      :items="countries"
-      hide-default-footer
-      class="elevation-1"
-    ></v-data-table>
-  </v-card>
+  <v-data-table
+    :headers="headers"
+    :items="countries"
+    hide-default-footer
+    disable-pagination
+    class="elevation-1"
+  ></v-data-table>
 </template>
 
 <script>
