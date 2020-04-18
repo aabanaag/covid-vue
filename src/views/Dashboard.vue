@@ -9,7 +9,13 @@
         <OverviewCard title="Deaths" :value="totalDeaths" />
       </v-row>
     </v-container>
-    <CountriesList :countries="countries" />
+    <v-card>
+      <v-card-title>
+        Top 10 Countries (Infection)
+        <v-spacer></v-spacer>
+      </v-card-title>
+      <CountriesList :countries="countries" />
+    </v-card>
   </div>
 </template>
 
