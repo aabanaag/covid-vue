@@ -23,7 +23,7 @@
 import OverviewCard from '@/components/OverviewCard.vue'
 import CountriesList from '@/components/CountriesList.vue'
 import { formatNumber } from '@/common/helper.js'
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   components: {
@@ -31,15 +31,19 @@ export default {
     CountriesList
   },
   created() {
-    this.$store.dispatch('fetchCountries', 'cases')
-    this.$store.dispatch('fetchOverviewStats')
+    this.fetchCountries('cases')
+    this.fetchOverviewStats()
   },
   computed: mapState({
-    countries: state => state.countries.slice(0, 10),
-    totalCases: state => formatNumber(state.overviewStats.cases),
-    newCases: state => formatNumber(state.overviewStats.todayCases),
-    totalRecoveries: state => formatNumber(state.overviewStats.recovered),
-    totalDeaths: state => formatNumber(state.overviewStats.deaths)
-  })
+    countries: state => state.countries.countries.slice(0, 10),
+    totalCases: state => formatNumber(state.stats.overview.cases),
+    newCases: state => formatNumber(state.stats.overview.todayCases),
+    totalRecoveries: state => formatNumber(state.stats.overview.recovered),
+    totalDeaths: state => formatNumber(state.stats.overview.deaths)
+  }),
+  methods: {
+    ...mapActions('countries', ['fetchCountries']),
+    ...mapActions('stats', ['fetchOverviewStats'])
+  }
 }
 </script>
