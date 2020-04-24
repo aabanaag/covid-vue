@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-col cols="12" md="10" offset-md="1">
     <h1>Overview</h1>
     <v-container>
       <v-row>
@@ -9,14 +9,16 @@
         <OverviewCard title="Deaths" :value="totalDeaths" />
       </v-row>
     </v-container>
-    <v-card>
-      <v-card-title>
-        Top 10 Countries (Infection)
-        <v-spacer></v-spacer>
-      </v-card-title>
-      <CountriesList :countries="countries" />
-    </v-card>
-  </div>
+    <v-col cols="12">
+      <v-card>
+        <v-card-title>
+          Top 10 Countries (Infection)
+          <v-spacer></v-spacer>
+        </v-card-title>
+        <CountriesList :countries="countries" />
+      </v-card>
+    </v-col>
+  </v-col>
 </template>
 
 <script>
