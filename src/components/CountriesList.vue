@@ -5,6 +5,7 @@
     hide-default-footer
     disable-pagination
     class="elevation-1"
+    @click:row="getSelected"
   ></v-data-table>
 </template>
 
@@ -31,6 +32,11 @@ export default {
     countries: {
       type: Array,
       required: true
+    }
+  },
+  methods: {
+    getSelected(data) {
+      this.$emit('setSelected', data)
     }
   }
 }

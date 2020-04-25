@@ -3,12 +3,16 @@ import CovidService from '@/services/covid.services'
 export const namespaced = true
 
 export const state = {
-  countries: []
+  countries: [],
+  selected: {}
 }
 
 export const mutations = {
   SET_COUNTRIES(state, data) {
     state.countries = data
+  },
+  SET_SELECTED_COUNTRY(state, data) {
+    state.selected = data
   }
 }
 
@@ -19,5 +23,8 @@ export const actions = {
     if (data != null) {
       commit('SET_COUNTRIES', data)
     }
+  },
+  setSelectedCountry({ commit }, country) {
+    commit('SET_SELECTED_COUNTRY', country)
   }
 }
