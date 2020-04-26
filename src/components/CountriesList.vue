@@ -2,8 +2,8 @@
   <v-data-table
     :headers="headers"
     :items="countries"
-    hide-default-footer
-    disable-pagination
+    :hide-default-footer="paginated"
+    :disable-pagination="paginated"
     class="elevation-1"
     @click:row="getSelected"
   ></v-data-table>
@@ -32,6 +32,10 @@ export default {
     countries: {
       type: Array,
       required: true
+    },
+    paginated: {
+      type: Boolean,
+      default: true
     }
   },
   methods: {

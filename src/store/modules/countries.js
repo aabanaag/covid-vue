@@ -4,7 +4,7 @@ export const namespaced = true
 
 export const state = {
   countries: [],
-  selected: {}
+  selected: null
 }
 
 export const mutations = {
@@ -22,6 +22,13 @@ export const actions = {
 
     if (data != null) {
       commit('SET_COUNTRIES', data)
+    }
+  },
+  async fetchByCountry({ commit }, code) {
+    const { data } = await CovidService.fetchByCountry(code)
+
+    if (data != null) {
+      commit('SET_SELECTED_COUNTRY', data)
     }
   },
   setSelectedCountry({ commit }, country) {
