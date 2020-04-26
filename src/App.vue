@@ -1,9 +1,19 @@
 <template>
-  <div id="app">
-    <router-view />
-  </div>
+  <v-app>
+    <Header />
+    <v-content>
+      <router-view />
+    </v-content>
+  </v-app>
 </template>
-
+<script>
+import Header from '@/components/Header.vue'
+export default {
+  components: {
+    Header
+  }
+}
+</script>
 <style>
 html {
   -webkit-text-size-adjust: 100%;
@@ -15,11 +25,6 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 1.5;
-}
-#app {
-  box-sizing: border-box;
-  padding: 0 20px 20px;
-  margin: 0 auto;
 }
 hr {
   box-sizing: content-box;
